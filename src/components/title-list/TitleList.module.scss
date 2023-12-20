@@ -1,0 +1,16 @@
+@import '../../assets/styles/variables';
+@import '../../assets/styles/functions';
+
+.block__titles {
+	display: grid;
+	grid-template-columns: 17% 56.5% 10.5% 16%;
+	background-color: $gray;
+
+	> h2 {
+		font-size: 0.8em;
+		line-height: 1.25;
+		font-weight: 700;
+		color: $black;
+		padding: adapt(18px, 1920px) 0px adapt(18px, 1920px) adapt(14px, 1920px);
+	}
+}
