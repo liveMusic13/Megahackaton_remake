@@ -10,7 +10,7 @@ const PersonalArea = () => {
 	const { isSettingView, setIsSettingView } = useSettingView();
 
 	return (
-		<Layout justifyContent='space-between'>
+		<Layout justifyContent='space-between' bgImage='../images/inside_info.jpg'>
 			<Header />
 			<Content>
 				<LeftPanel

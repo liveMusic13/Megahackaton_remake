@@ -131,8 +131,17 @@ export const Users = createSlice({
 			state[0] = { ...state[0], ...payload };
 		},
 		deleteNewsFromHistory: (state, { payload }) => {
+			const idsToDelete = payload.map(item => item.id);
+
 			state[0].news.viewHistoryNews = state[0].news.viewHistoryNews.filter(
-				historyNews => historyNews.id !== payload
+				historyNews => !idsToDelete.includes(historyNews.id)
+			);
+		},
+		deleteNewsFromLater: (state, { payload }) => {
+			const idsToDelete = payload.map(item => item.id);
+
+			state[0].news.viewLaterNews = state[0].news.viewLaterNews.filter(
+				laterNews => !idsToDelete.includes(laterNews.id)
 			);
 		},
 	},

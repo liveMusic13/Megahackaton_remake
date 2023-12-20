@@ -1,6 +1,9 @@
+import { useSearchTerm } from '../../../hooks/useSearchTerm';
 import styles from './InputSearch.module.scss';
 
 const InputSearch = ({ filter, header }) => {
+	const { searchTerm, setSearchTerm } = useSearchTerm();
+
 	return (
 		<div className={styles.block__header_settings}>
 			{filter === 'yes' && (
@@ -15,7 +18,13 @@ const InputSearch = ({ filter, header }) => {
 					src='../images/icons/search.svg'
 					alt='search'
 				/>
-				<input className={styles.search} type='text' placeholder='Поиск' />
+				<input
+					className={styles.search}
+					type='text'
+					placeholder='Поиск'
+					value={searchTerm}
+					onChange={event => setSearchTerm(event.target.value)}
+				/>
 			</div>
 			{header === 'yes' && (
 				<>

@@ -1,4 +1,5 @@
 import { useDispatch } from 'react-redux';
+import { useSearchTerm } from '../../../hooks/useSearchTerm';
 import { actions } from '../../../store/users/Users.slice';
 import styles from './Button.module.scss';
 
@@ -10,6 +11,8 @@ const Button = ({
 	editingNews,
 }) => {
 	const dispatch = useDispatch();
+
+	const { setSearchTerm } = useSearchTerm();
 
 	return (
 		<>
@@ -31,6 +34,13 @@ const Button = ({
 						setIsEditNews(false);
 						setIsViewEditNews(false);
 					}}
+				>
+					{children}
+				</button>
+			) : buttonFor === 'clear' ? (
+				<button
+					className={styles.button_transparent}
+					onClick={() => setSearchTerm('')}
 				>
 					{children}
 				</button>

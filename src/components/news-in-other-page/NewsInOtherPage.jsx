@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import useDescriptionLength from '../../hooks/useDescriptionLength';
+import { actions as focusActions } from '../../store/focus-object/FocusObject.slice';
 import { actions } from '../../store/users/Users.slice';
 import styles from './NewsInOtherPage.module.scss';
 
@@ -18,6 +19,11 @@ const NewsInOtherPage = ({ news, focusNews, setFocusNews, page }) => {
 			onClick={() => {
 				setFocusNews(news.id);
 				setIsCheckbox(!isCheckbox);
+				if (!isCheckbox) {
+					dispatch(focusActions.addFocusNews(news.id));
+				} else {
+					dispatch(focusActions.deleteFocusNews(news.id));
+				}
 			}}
 			style={
 				isCheckbox && focusNews === news.id

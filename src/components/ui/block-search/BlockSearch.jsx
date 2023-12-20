@@ -1,33 +1,56 @@
-import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
+import { actions as focusActions } from '../../../store/focus-object/FocusObject.slice';
 import { actions } from '../../../store/users/Users.slice';
 import Button from '../button/Button';
 import InputSearch from '../input-search/InputSearch';
 import styles from './BlockSearch.module.scss';
 
-const BlockSearch = ({ doubleBlock, focusNews, setFocusNews }) => {
+const BlockSearch = ({ doubleBlock, focusNews, setFocusNews, path }) => {
 	const dispatch = useDispatch();
+
+	const focusNewsLength = useSelector(state => state.focusObject);
+
+	const { pathname } = useLocation();
+
+	useEffect(() => {
+		dispatch(focusActions.deleteAllFocus(''));
+	}, [pathname]);
 
 	return (
 		<>
 			{doubleBlock !== 'yes' ? (
 				<div className={styles.block__search}>
 					<InputSearch />
-					<Button saveInfo='search'>Поиск</Button>
+					<Button buttonFor='clear'>Очистить</Button>
 				</div>
 			) : (
 				<>
 					<div className={styles.block__search_yes}>
 						<div className={styles.block__one}>
 							<InputSearch />
-							<Button saveInfo='search'>Поиск</Button>
+							<Button buttonFor='clear'>Очистить</Button>
 						</div>
 
 						<div className={styles.add_and_delete}>
-							<p>1 выделенный объект</p>
+							<p>
+								{focusNewsLength.length}{' '}
+								{focusNewsLength.length === 0
+									? 'выделенных объектов'
+									: focusNewsLength.length === 1
+									? 'выделенный объект'
+									: 'выделенных объекта'}
+							</p>
 
 							<button
 								onClick={() => {
-									dispatch(actions.deleteNewsFromHistory(focusNews));
+									if (path === 'later') {
+										dispatch(actions.deleteNewsFromLater(focusNewsLength));
+									} else {
+										dispatch(actions.deleteNewsFromHistory(focusNewsLength));
+									}
+									dispatch(focusActions.deleteAllFocus(''));
 									setFocusNews(null);
 								}}
 							>

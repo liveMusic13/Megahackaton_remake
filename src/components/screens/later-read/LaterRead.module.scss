@@ -1,3 +1,17 @@
+@import '../../../assets/styles/variables';
+@import '../../../assets/styles/functions';
+
 .main {
 	width: 100%;
+
+	> .focusNews__description {
+		min-height: 25%;
+		padding: adapt(16px, 1920px) adapt(57px, 1920px) adapt(16px, 1920px)
+			adapt(71px, 1920px);
+		font-size: 1em;
+		line-height: 1.4;
+		color: $dark__blue;
+		background-color: $gray;
+		text-indent: 1em;
+	}
 }

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useSearchTerm } from '../../../hooks/useSearchTerm';
 import { useSettingView } from '../../../hooks/useSettingView';
 import Content from '../../content/Content';
 import FontAndTheme from '../../font-and-theme/FontAndTheme';
@@ -17,6 +18,8 @@ const History = () => {
 
 	const [focusNews, setFocusNews] = useState();
 	const { isSettingView, setIsSettingView } = useSettingView();
+
+	const { searchTerm } = useSearchTerm();
 
 	return (
 		<Layout>
@@ -36,17 +39,44 @@ const History = () => {
 					/>
 					<TitleList />
 					<div className={styles.block__resultHistory}>
-						{user.news.viewHistoryNews.map(news => {
-							return (
-								<NewsInOtherPage
-									key={news.id}
-									news={news}
-									setFocusNews={setFocusNews}
-									focusNews={focusNews}
-									page='history'
-								/>
-							);
-						})}
+						{searchTerm === '' ? (
+							<>
+								{user.news.viewHistoryNews.map(news => {
+									return (
+										<NewsInOtherPage
+											key={news.id}
+											news={news}
+											setFocusNews={setFocusNews}
+											focusNews={focusNews}
+											page='history'
+										/>
+									);
+								})}
+							</>
+						) : (
+							<>
+								{user.news.viewHistoryNews.map(news => {
+									if (
+										news.title.toLowerCase().includes(searchTerm.toLowerCase())
+									) {
+										return (
+											<NewsInOtherPage
+												key={news.id}
+												news={news}
+												setFocusNews={setFocusNews}
+												focusNews={focusNews}
+												page='history'
+											/>
+										);
+									}
+									return null;
+								})}
+								{user.news.viewHistoryNews.every(
+									news =>
+										!news.title.toLowerCase().includes(searchTerm.toLowerCase())
+								) && <p>нет новостей</p>}
+							</>
+						)}
 					</div>
 				</div>
 			</Content>

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useEditingNewsTest } from '../../../hooks/useEditingNewsTest';
+import { useSearchTerm } from '../../../hooks/useSearchTerm';
 import { useSettingView } from '../../../hooks/useSettingView';
 import Content from '../../content/Content';
 import Editing from '../../editing/Editing';
@@ -16,6 +17,8 @@ const Home = () => {
 	const [isViewEditNews, setIsViewEditNews] = useState(false);
 
 	const { isSettingView, setIsSettingView } = useSettingView();
+
+	const { searchTerm } = useSearchTerm();
 
 	const user = useSelector(state => state.users[0]);
 
@@ -38,16 +41,42 @@ const Home = () => {
 							Всего {user.news.newNews.length} новости
 						</p>
 					</div>
-					{user.news.newNews.map(news => {
-						return (
-							<News
-								key={news.id}
-								setIsViewEditNews={setIsViewEditNews}
-								isViewEditNews={isViewEditNews}
-								news={news}
-							/>
-						);
-					})}
+					{searchTerm === '' ? (
+						<>
+							{user.news.newNews.map(news => {
+								return (
+									<News
+										key={news.id}
+										setIsViewEditNews={setIsViewEditNews}
+										isViewEditNews={isViewEditNews}
+										news={news}
+									/>
+								);
+							})}
+						</>
+					) : (
+						<>
+							{user.news.newNews.map(news => {
+								if (
+									news.title.toLowerCase().includes(searchTerm.toLowerCase())
+								) {
+									return (
+										<News
+											key={news.id}
+											setIsViewEditNews={setIsViewEditNews}
+											isViewEditNews={isViewEditNews}
+											news={news}
+										/>
+									);
+								}
+								return null;
+							})}
+							{user.news.newNews.every(
+								news =>
+									!news.title.toLowerCase().includes(searchTerm.toLowerCase())
+							) && <p>нет новостей</p>}
+						</>
+					)}
 				</div>
 				{isViewEditNews && <Editing setIsViewEditNews={setIsViewEditNews} />}
 			</Content>

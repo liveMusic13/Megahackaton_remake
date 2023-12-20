@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useSearchTerm } from '../../../hooks/useSearchTerm';
+import { useSettingView } from '../../../hooks/useSettingView';
 import Content from '../../content/Content';
+import FontAndTheme from '../../font-and-theme/FontAndTheme';
 import Header from '../../header/Header';
 import Layout from '../../layout/Layout';
 import LeftPanel from '../../left-panel/LeftPanel';
@@ -14,31 +17,76 @@ const LaterRead = () => {
 	const [focusNews, setFocusNews] = useState();
 	const user = useSelector(state => state.users[0]);
 
+	const { searchTerm } = useSearchTerm();
+
+	const { isSettingView, setIsSettingView } = useSettingView();
+
 	return (
 		<Layout>
 			<Header />
 			<Content>
-				<LeftPanel />
+				<LeftPanel
+					isSettingView={isSettingView}
+					setIsSettingView={setIsSettingView}
+				/>
+				{isSettingView && <FontAndTheme />}
 				<div className={styles.main}>
 					<NavigateBar location='later' />
 					<BlockSearch
 						doubleBlock='yes'
 						focusNews={focusNews}
 						setFocusNews={setFocusNews}
+						path='later'
 					/>
 					<TitleList />
 					<div className={styles.block__resultLater}>
-						{user.news.viewLaterNews.map(news => {
-							return (
-								<NewsInOtherPage
-									key={news.id}
-									news={news}
-									setFocusNews={setFocusNews}
-									focusNews={focusNews}
-								/>
-							);
-						})}
+						{searchTerm === '' ? (
+							<>
+								{user.news.viewLaterNews.map(news => {
+									return (
+										<NewsInOtherPage
+											key={news.id}
+											news={news}
+											setFocusNews={setFocusNews}
+											focusNews={focusNews}
+										/>
+									);
+								})}
+							</>
+						) : (
+							<>
+								{user.news.viewLaterNews.map(news => {
+									if (
+										news.title.toLowerCase().includes(searchTerm.toLowerCase())
+									) {
+										return (
+											<NewsInOtherPage
+												key={news.id}
+												news={news}
+												setFocusNews={setFocusNews}
+												focusNews={focusNews}
+												page='history'
+											/>
+										);
+									}
+									return null;
+								})}
+								{user.news.viewLaterNews.every(
+									news =>
+										!news.title.toLowerCase().includes(searchTerm.toLowerCase())
+								) && <p>нет новостей</p>}
+							</>
+						)}
 					</div>
+					{user.news.viewLaterNews.map(news => {
+						if (news.id === focusNews) {
+							return (
+								<p key={news.id} className={styles.focusNews__description}>
+									{news.full_text}
+								</p>
+							);
+						}
+					})}
 				</div>
 			</Content>
 		</Layout>
