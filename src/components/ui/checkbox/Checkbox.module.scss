@@ -1,0 +1,28 @@
+@import '../../../assets/styles/variables';
+@import '../../../assets/styles/functions';
+
+.checkbox {
+	display: flex;
+	position: relative;
+	gap: adapt(20px, 1920px);
+	align-items: center;
+
+	> input {
+		position: absolute;
+		opacity: 0;
+		z-index: 1;
+		width: adapt(25px, 1920px);
+		height: adapt(25px, 1920px);
+	}
+
+	> img {
+		width: adapt(25px, 1920px);
+		height: adapt(25px, 1920px);
+	}
+
+	> label {
+		font-size: 0.8em;
+		line-height: 1.25;
+		color: $black;
+	}
+}

@@ -1,13 +1,18 @@
+import { useFilter } from '../../../hooks/useFilter';
 import { useSearchTerm } from '../../../hooks/useSearchTerm';
 import styles from './InputSearch.module.scss';
 
 const InputSearch = ({ filter, header }) => {
 	const { searchTerm, setSearchTerm } = useSearchTerm();
+	const { setIsViewFilter } = useFilter();
 
 	return (
 		<div className={styles.block__header_settings}>
 			{filter === 'yes' && (
-				<button className={styles.button__filtr}>
+				<button
+					className={styles.button__filtr}
+					onClick={() => setIsViewFilter(true)}
+				>
 					<img src='../images/icons/filtr.svg' alt='img' />
 					Фильтры
 				</button>

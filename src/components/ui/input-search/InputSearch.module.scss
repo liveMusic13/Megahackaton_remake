@@ -64,6 +64,10 @@
 		justify-content: center;
 		gap: adapt(10px, 1920px);
 
+		&:hover {
+			cursor: pointer;
+		}
+
 		> img {
 			width: adapt(24px, 1920px);
 			height: adapt(44px, 1920px);
