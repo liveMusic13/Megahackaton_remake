@@ -9,6 +9,9 @@ export const folderFocus = createSlice({
 		addFolderFocusNews: (state, { payload }) => {
 			return [{ id: payload }];
 		},
+		deleteFolder: (state, { payload }) => {
+			return [];
+		},
 	},
 });
 

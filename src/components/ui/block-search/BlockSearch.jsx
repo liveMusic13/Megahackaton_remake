@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { useTheme } from '../../../hooks/useTheme';
 import { actions as focusActions } from '../../../store/focus-object/FocusObject.slice';
+// import { actions as focusFolder } from '../../../store/folder-focus/FolderFocus.slice';TODO: РАЗОБРАТЬСЯ ПОЧЕМУ ПОСЛЕ УДАЛЕНИЯ ОДНОЙ ПАПКИ, ОТКРЫВАЯ ДРУГУЮ, ВЫЛЕТАЕТ ОШИБКА
 import { actions } from '../../../store/users/Users.slice';
 import Button from '../button/Button';
 import InputSearch from '../input-search/InputSearch';
@@ -19,6 +20,7 @@ const BlockSearch = ({
 	const dispatch = useDispatch();
 
 	const focusNewsLength = useSelector(state => state.focusObject);
+	const idFolderFocus = useSelector(state => state.folderFocus[0]);
 
 	const { pathname } = useLocation();
 	const { theme } = useTheme();
@@ -72,12 +74,14 @@ const BlockSearch = ({
 									if (path === 'later') {
 										dispatch(actions.deleteNewsFromLater(focusNewsLength));
 									} else if (path === 'favorite-folder') {
-										// setIsNewsInFolder(false);
+										setIsNewsInFolder(false);
+										dispatch(actions.deleteFolder(idFolderFocus));
+										// dispatch(focusFolder.deleteFolder(''));
 									} else {
 										dispatch(actions.deleteNewsFromHistory(focusNewsLength));
 									}
 									dispatch(focusActions.deleteAllFocus(''));
-									setFocusNews(null);
+									// setFocusNews(null);
 								}}
 							>
 								Удалить

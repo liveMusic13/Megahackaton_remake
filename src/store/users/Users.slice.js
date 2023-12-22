@@ -212,6 +212,15 @@ export const Users = createSlice({
 				state[0].news.viewLaterNews.push(payload);
 			}
 		},
+		deleteFolder: (state, { payload }) => {
+			const index = state[0].news.favoritesNews.findIndex(
+				news => news.id === payload.id
+			);
+
+			if (index !== -1) {
+				state[0].news.favoritesNews.splice(index, 1);
+			}
+		},
 		deleteNewNews: (state, { payload }) => {
 			const index = state[0].news.newNews.findIndex(
 				news => news.id === payload.id

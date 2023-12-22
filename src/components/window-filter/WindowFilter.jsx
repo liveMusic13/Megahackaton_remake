@@ -1,4 +1,5 @@
 import { useFilter } from '../../hooks/useFilter';
+import { useTheme } from '../../hooks/useTheme';
 import Button from '../ui/button/Button';
 import Checkbox from '../ui/checkbox/Checkbox';
 import styles from './WindowFilter.module.scss';
@@ -6,14 +7,22 @@ import { arrCategory, arrMiscellaneous, arrSource } from './checkbox.data';
 
 const WindowFilter = () => {
 	const { setIsViewFilter } = useFilter();
+	const { theme } = useTheme();
 
 	return (
-		<div className={styles.wrapper}>
+		<div className={styles[theme ? 'wrapper' : 'wrapper-dark']}>
 			<button
 				className={styles.exit__button}
 				onClick={() => setIsViewFilter(false)}
 			>
-				<img src='./images/icons/exit_edit.svg' alt='img' />
+				<img
+					src={
+						theme
+							? './images/icons/exit_edit.svg'
+							: './images/icons/exit_edit_active_white.svg'
+					}
+					alt='img'
+				/>
 			</button>
 			<form>
 				<div className={styles.block__category}>
