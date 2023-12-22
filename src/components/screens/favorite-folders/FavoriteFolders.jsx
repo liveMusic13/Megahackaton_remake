@@ -166,7 +166,11 @@ const FavoriteFolders = () => {
 							})}
 
 							{isCreateFolder ? (
-								<div className={styles.create__folder}>
+								<div
+									className={
+										styles[theme ? 'create__folder' : 'create__folder-dark']
+									}
+								>
 									<input
 										type='text'
 										value={valueCreateFolder}

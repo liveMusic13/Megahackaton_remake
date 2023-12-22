@@ -70,6 +70,37 @@
 				}
 			}
 		}
+		> .create__folder-dark {
+			display: flex;
+			gap: adapt(10px, 1920px);
+
+			> input {
+				width: adapt(270px, 1920px);
+				height: adapt(40px, 1920px);
+				border: 1px solid $white;
+				border-radius: adapt(20px, 1920px);
+				outline: none;
+				color: $white;
+				font-size: 1em;
+				padding: adapt(5px, 1920px) adapt(10px, 1920px);
+				margin-right: adapt(15px, 1920px);
+				background-color: $dark__blue2;
+			}
+
+			> button {
+				background-color: transparent;
+				color: $white;
+				border: 1px solid $white;
+				border-radius: adapt(20px, 1920px);
+				width: adapt(200px, 1920px);
+				height: adapt(40px, 1920px);
+				text-transform: uppercase;
+
+				&:hover {
+					cursor: pointer;
+				}
+			}
+		}
 
 		> .button__folder {
 			background-color: transparent;
