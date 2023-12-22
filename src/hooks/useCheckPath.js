@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
+import { useTheme } from './useTheme';
 
 export const useCheckPath = () => {
 	const userRef = useRef(null);
@@ -20,27 +21,37 @@ export const useCheckPath = () => {
 
 	const { pathname } = useLocation();
 
+	const { theme } = useTheme();
+
 	useEffect(() => {
 		if (pathname === '/home/personalArea') {
 			userRef.current.style.display = 'none';
 			user_activeRef.current.style.display = 'block';
 			userBlockRef.current.style.color = 'white';
-			userBlockRef.current.style.backgroundColor = 'rgba(0, 83, 154, 1)';
+			userBlockRef.current.style.backgroundColor = theme
+				? 'rgba(0, 83, 154, 1)'
+				: 'rgba(0, 83, 154, 1)';
 		} else if (pathname === '/home/history') {
 			historyRef.current.style.display = 'none';
 			historyRef_active.current.style.display = 'block';
 			historyBlockRef.current.style.color = 'white';
-			historyBlockRef.current.style.backgroundColor = 'rgba(0, 83, 154, 1)';
+			historyBlockRef.current.style.backgroundColor = theme
+				? 'rgba(0, 83, 154, 1)'
+				: 'rgba(0, 83, 154, 1)';
 		} else if (pathname === '/home/favorite') {
 			favoriteRef.current.style.display = 'none';
 			favoriteRef_active.current.style.display = 'block';
 			favoriteBlockRef.current.style.color = 'white';
-			favoriteBlockRef.current.style.backgroundColor = 'rgba(0, 83, 154, 1)';
+			favoriteBlockRef.current.style.backgroundColor = theme
+				? 'rgba(0, 83, 154, 1)'
+				: 'rgba(0, 83, 154, 1)';
 		} else if (pathname === '/home/laterRead') {
 			laterRef.current.style.display = 'none';
 			laterRef_active.current.style.display = 'block';
 			laterBlockRef.current.style.color = 'white';
-			laterBlockRef.current.style.backgroundColor = 'rgba(0, 83, 154, 1)';
+			laterBlockRef.current.style.backgroundColor = theme
+				? 'rgba(0, 83, 154, 1)'
+				: 'rgba(0, 83, 154, 1)';
 		}
 	}, [pathname]);
 

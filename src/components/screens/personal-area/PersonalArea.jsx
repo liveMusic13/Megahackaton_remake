@@ -1,4 +1,5 @@
 import { useSettingView } from '../../../hooks/useSettingView';
+import { useTheme } from '../../../hooks/useTheme';
 import Content from '../../content/Content';
 import FontAndTheme from '../../font-and-theme/FontAndTheme';
 import Header from '../../header/Header';
@@ -8,9 +9,15 @@ import LeftPanel from '../../left-panel/LeftPanel';
 
 const PersonalArea = () => {
 	const { isSettingView, setIsSettingView } = useSettingView();
+	const { theme } = useTheme();
 
 	return (
-		<Layout justifyContent='space-between' bgImage='../images/inside_info.jpg'>
+		<Layout
+			justifyContent='space-between'
+			bgImage={
+				theme ? '../images/inside_info.jpg' : '../images/inside_info-dark.jpg'
+			}
+		>
 			<Header />
 			<Content>
 				<LeftPanel

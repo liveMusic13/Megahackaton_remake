@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useSearchTerm } from '../../../hooks/useSearchTerm';
 import { useSettingView } from '../../../hooks/useSettingView';
+import { useTheme } from '../../../hooks/useTheme';
 import Content from '../../content/Content';
 import FontAndTheme from '../../font-and-theme/FontAndTheme';
 import Header from '../../header/Header';
@@ -18,6 +19,7 @@ const History = () => {
 
 	const [focusNews, setFocusNews] = useState();
 	const { isSettingView, setIsSettingView } = useSettingView();
+	const { theme } = useTheme();
 
 	const { searchTerm } = useSearchTerm();
 
@@ -30,7 +32,7 @@ const History = () => {
 					setIsSettingView={setIsSettingView}
 				/>
 				{isSettingView && <FontAndTheme />}
-				<div className={styles.main}>
+				<div className={styles[theme ? 'main' : 'main-dark']}>
 					<NavigateBar location='history' />
 					<BlockSearch
 						doubleBlock='yes'
@@ -38,7 +40,13 @@ const History = () => {
 						setFocusNews={setFocusNews}
 					/>
 					<TitleList />
-					<div className={styles.block__resultHistory}>
+					<div
+						className={
+							styles[
+								theme ? 'block__resultHistory' : 'block__resultHistory-dark'
+							]
+						}
+					>
 						{searchTerm === '' ? (
 							<>
 								{user.news.viewHistoryNews.map(news => {

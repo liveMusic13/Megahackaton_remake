@@ -239,7 +239,265 @@
 			text-transform: uppercase;
 			line-height: 1.4;
 			font-weight: 600;
-			color: $blue;
+			background-color: transparent;
+			font-size: 1em;
+
+			&:hover {
+				cursor: pointer;
+				background-color: $blue;
+				color: $white;
+			}
+		}
+	}
+}
+
+.wrapper-dark {
+	padding: adapt(85px, 1920px) adapt(46px, 1920px);
+	display: flex;
+	gap: adapt(64px, 1920px);
+
+	> .block__image_profile {
+		width: adapt(284px, 1920px);
+		height: adapt(206px, 1920px);
+		position: relative;
+
+		> .block__navigation {
+			display: flex;
+			gap: adapt(12px, 1920px);
+			position: absolute;
+			top: adapt(-30px, 1920px);
+
+			> a {
+				color: $blue;
+				font-size: 0.8em;
+				line-height: 1.25;
+			}
+
+			> p {
+				font-size: 0.8em;
+				line-height: 1.25;
+				color: $white;
+			}
+		}
+
+		> .block__image_profile {
+			position: relative;
+
+			&:hover {
+				cursor: pointer;
+			}
+
+			> input {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: adapt(284px, 1920px);
+				height: adapt(206px, 1920px);
+				opacity: 0;
+
+				&:hover {
+					cursor: pointer;
+				}
+			}
+			> .image_profile {
+				width: adapt(284px, 1920px);
+				height: adapt(206px, 1920px);
+				border-radius: adapt(20px, 1920px);
+			}
+		}
+
+		> .image_profile_noFoto {
+			width: adapt(284px, 1920px);
+			height: adapt(206px, 1920px);
+			border-radius: adapt(20px, 1920px);
+			background-color: $gray1;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+
+			> button {
+				background-color: transparent;
+				position: relative;
+
+				&:hover {
+					cursor: pointer;
+				}
+
+				> img {
+					width: adapt(96px, 1920px);
+					&:hover {
+						cursor: pointer;
+					}
+				}
+
+				> input {
+					position: absolute;
+					top: 0;
+					left: 0;
+					width: adapt(96px, 1920px);
+					height: adapt(96px, 1920px);
+					opacity: 0;
+
+					&:hover {
+						cursor: pointer;
+					}
+				}
+			}
+		}
+	}
+
+	> .block__content {
+		display: flex;
+		flex-direction: column;
+		max-width: adapt(438px, 1920px);
+
+		> .block__name {
+			margin-bottom: adapt(45px, 1920px);
+
+			> h2 {
+				font-weight: 800;
+				line-height: 1.4;
+				margin-bottom: adapt(28px, 1920px);
+				font-size: 1.6em;
+				color: $white;
+
+				&:hover {
+					cursor: pointer;
+				}
+			}
+			> p {
+				line-height: 1;
+				font-size: 1.2em;
+				font-weight: 500;
+				color: $white;
+
+				&:hover {
+					cursor: pointer;
+				}
+			}
+
+			> .h2 {
+				font-weight: 800;
+				line-height: 1.4;
+				margin-bottom: adapt(28px, 1920px);
+				font-size: 1.6em;
+				color: $white;
+
+				&:hover {
+					cursor: pointer;
+				}
+			}
+			> .p {
+				line-height: 1;
+				font-size: 1.2em;
+				font-weight: 500;
+				color: $white;
+
+				&:hover {
+					cursor: pointer;
+				}
+			}
+		}
+
+		> .block__contact {
+			display: flex;
+			gap: adapt(42px, 1920px);
+			margin-bottom: adapt(45px, 1920px);
+
+			> .mobile {
+				> p {
+					line-height: 1;
+					color: $white;
+
+					&:first-child {
+						margin-bottom: adapt(20px, 1920px);
+					}
+
+					&:last-child {
+						&:hover {
+							cursor: pointer;
+						}
+					}
+				}
+
+				> .p {
+					line-height: 1;
+					color: $white;
+
+					&:hover {
+						cursor: pointer;
+					}
+				}
+			}
+			> .email {
+				> p {
+					line-height: 1;
+					color: $white;
+
+					&:first-child {
+						margin-bottom: adapt(20px, 1920px);
+					}
+
+					&:last-child {
+						&:hover {
+							cursor: pointer;
+						}
+					}
+				}
+
+				> .p {
+					line-height: 1;
+					color: $white;
+
+					&:hover {
+						cursor: pointer;
+					}
+				}
+			}
+		}
+
+		> .block__password {
+			display: flex;
+			flex-direction: column;
+
+			> label {
+				margin-bottom: adapt(20px, 1920px);
+				color: $white;
+			}
+
+			> input {
+				width: adapt(326px, 1920px);
+				height: adapt(31px, 1920px);
+				line-height: 1;
+				border: 1px solid $white;
+				border-radius: adapt(20px, 1920px);
+				outline: none;
+				font-size: 1em;
+				line-height: 1;
+				padding: adapt(6.5px, 1920px) adapt(16px, 1920px);
+				color: $white;
+				background-color: transparent;
+			}
+
+			> .main_pass {
+				margin-bottom: adapt(36px, 1920px);
+			}
+
+			> .second_pass {
+				margin-bottom: adapt(35px, 1920px);
+			}
+		}
+
+		> .button_save {
+			margin-left: 13%;
+			width: adapt(231px, 1920px);
+			height: adapt(44px, 1920px);
+			border-radius: adapt(20px, 1920px);
+			border: 1px solid $white;
+			color: $white;
+			text-transform: uppercase;
+			line-height: 1.4;
+			font-weight: 600;
 			background-color: transparent;
 			font-size: 1em;
 

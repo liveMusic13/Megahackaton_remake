@@ -1,0 +1,152 @@
+@import '../../../assets/styles/variables';
+@import '../../../assets/styles/functions';
+
+.main {
+	width: 100%;
+
+	> .focusNews__description {
+		min-height: 25%;
+		padding: adapt(16px, 1920px) adapt(57px, 1920px) adapt(16px, 1920px)
+			adapt(71px, 1920px);
+		font-size: 1em;
+		line-height: 1.4;
+		color: $dark__blue;
+		background-color: $gray;
+		text-indent: 1em;
+	}
+
+	> .focusNews__description-dark {
+		min-height: 25%;
+		padding: adapt(16px, 1920px) adapt(57px, 1920px) adapt(16px, 1920px)
+			adapt(71px, 1920px);
+		font-size: 1em;
+		line-height: 1.4;
+		color: $white;
+		background-color: $dark__blue2;
+		text-indent: 1em;
+	}
+
+	> .block__resultFolder-dark {
+		background-color: $dark__blue;
+	}
+
+	> .block__buttons {
+		display: flex;
+		flex-direction: column;
+		flex-wrap: wrap;
+		gap: adapt(48px, 1920px);
+		padding: adapt(75px, 1920px) adapt(65px, 1920px);
+		align-items: start;
+		overflow-y: scroll;
+		max-height: 80%;
+
+		> .create__folder {
+			display: flex;
+			gap: adapt(10px, 1920px);
+
+			> input {
+				width: adapt(270px, 1920px);
+				height: adapt(40px, 1920px);
+				border: 1px solid $blue;
+				border-radius: adapt(20px, 1920px);
+				outline: none;
+				color: $black;
+				font-size: 1em;
+				padding: adapt(5px, 1920px) adapt(10px, 1920px);
+				margin-right: adapt(15px, 1920px);
+			}
+
+			> button {
+				background-color: transparent;
+				color: $blue;
+				border: 1px solid $blue;
+				border-radius: adapt(20px, 1920px);
+				width: adapt(200px, 1920px);
+				height: adapt(40px, 1920px);
+				text-transform: uppercase;
+
+				&:hover {
+					cursor: pointer;
+				}
+			}
+		}
+
+		> .button__folder {
+			background-color: transparent;
+			padding-bottom: adapt(10px, 1920px);
+			font-weight: 600;
+			font-size: 1em;
+			color: $black;
+			line-height: 1.4;
+
+			&:hover {
+				cursor: pointer;
+			}
+
+			> img {
+				width: adapt(83px, 1920px);
+				height: adapt(74px, 1920px);
+				margin-right: adapt(48px, 1920px);
+				margin-bottom: adapt(-5px, 1920px);
+			}
+		}
+
+		> .button__folder_add {
+			background-color: transparent;
+			padding-bottom: adapt(10px, 1920px);
+			font-size: 1em;
+			color: $medium_gray;
+			line-height: 1.4;
+
+			&:hover {
+				cursor: pointer;
+			}
+
+			> img {
+				width: adapt(83px, 1920px);
+				height: adapt(74px, 1920px);
+				margin-right: adapt(48px, 1920px);
+				margin-bottom: adapt(-5px, 1920px);
+			}
+		}
+
+		> .button__folder-dark {
+			background-color: transparent;
+			padding-bottom: adapt(10px, 1920px);
+			font-weight: 600;
+			font-size: 1em;
+			color: $white;
+			line-height: 1.4;
+
+			&:hover {
+				cursor: pointer;
+			}
+
+			> img {
+				width: adapt(83px, 1920px);
+				height: adapt(74px, 1920px);
+				margin-right: adapt(48px, 1920px);
+				margin-bottom: adapt(-5px, 1920px);
+			}
+		}
+
+		> .button__folder_add-dark {
+			background-color: transparent;
+			padding-bottom: adapt(10px, 1920px);
+			font-size: 1em;
+			color: $blue;
+			line-height: 1.4;
+
+			&:hover {
+				cursor: pointer;
+			}
+
+			> img {
+				width: adapt(83px, 1920px);
+				height: adapt(74px, 1920px);
+				margin-right: adapt(48px, 1920px);
+				margin-bottom: adapt(-5px, 1920px);
+			}
+		}
+	}
+}

@@ -30,3 +30,35 @@
 		height: adapt(45px, 1920px);
 	}
 }
+
+/* ==================== dark theme ==================*/
+
+.wrapper__search-dark {
+	background-color: $dark__blue;
+	min-height: adapt(91px, 1920px);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: adapt(23px, 1920px) adapt(60px, 1920px) adapt(23px, 1920px)
+		adapt(180px, 1920px);
+	width: 100%;
+
+	> img {
+		width: adapt(146px, 1920px);
+		height: adapt(45px, 1920px);
+	}
+}
+
+.wrapper-dark {
+	background-color: $dark__blue;
+	min-height: adapt(91px, 1920px);
+	display: flex;
+	justify-content: flex-end;
+	padding: adapt(23px, 1920px) adapt(60px, 1920px);
+	width: 100%;
+
+	> img {
+		width: adapt(146px, 1920px);
+		height: adapt(45px, 1920px);
+	}
+}

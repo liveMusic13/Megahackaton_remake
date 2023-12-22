@@ -14,3 +14,17 @@
 		padding: adapt(18px, 1920px) 0px adapt(18px, 1920px) adapt(14px, 1920px);
 	}
 }
+
+.block__titles-dark {
+	display: grid;
+	grid-template-columns: 17% 56.5% 10.5% 16%;
+	background-color: $blue;
+
+	> h2 {
+		font-size: 0.8em;
+		line-height: 1.25;
+		font-weight: 700;
+		color: $white;
+		padding: adapt(18px, 1920px) 0px adapt(18px, 1920px) adapt(14px, 1920px);
+	}
+}

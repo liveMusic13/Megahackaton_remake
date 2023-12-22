@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useEditingNewsTest } from '../../hooks/useEditingNewsTest';
+import { useTheme } from '../../hooks/useTheme';
 import { actions } from '../../store/users/Users.slice';
 import styles from './Editing.module.scss';
 
@@ -17,8 +18,10 @@ const Editing = ({ isViewEditNews, setIsViewEditNews }) => {
 
 	const dispatch = useDispatch();
 
+	const { theme } = useTheme();
+
 	return (
-		<div className={styles.editing}>
+		<div className={styles[theme ? 'editing' : 'editing-dark']}>
 			<>
 				<div className={styles.header__edit}>
 					<Link to='#'>К источнику</Link>
@@ -151,6 +154,7 @@ const Editing = ({ isViewEditNews, setIsViewEditNews }) => {
 
 					<div className={styles.block__buttons}>
 						<button
+							className={styles[theme ? 'button_exit' : 'button_exit-dark']}
 							onClick={() => {
 								setIsActiveEdit(false);
 							}}

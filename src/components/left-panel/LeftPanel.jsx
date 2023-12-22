@@ -1,11 +1,13 @@
 import { useNavigate } from 'react-router-dom';
 import { useCheckPath } from '../../hooks/useCheckPath';
+import { useTheme } from '../../hooks/useTheme';
 import styles from './LeftPanel.module.scss';
 import { arrImages } from './arrImagesPanel';
 
 const LeftPanel = ({ isSettingView, setIsSettingView }) => {
 	const navigate = useNavigate();
 
+	const { theme } = useTheme();
 	const {
 		userRef,
 		user_activeRef,
@@ -22,7 +24,7 @@ const LeftPanel = ({ isSettingView, setIsSettingView }) => {
 	} = useCheckPath();
 
 	return (
-		<div className={styles.wrapper}>
+		<div className={styles[theme ? 'wrapper' : 'wrapper-dark']}>
 			{arrImages.map(elem => {
 				return (
 					<button
@@ -50,6 +52,8 @@ const LeftPanel = ({ isSettingView, setIsSettingView }) => {
 								navigate('/home/personalArea');
 							} else if (elem.id === 6) {
 								navigate('/');
+							} else if (elem.id === 4) {
+								navigate('/home/favoriteFolders');
 							}
 						}}
 					>

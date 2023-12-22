@@ -1,5 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { useSearchTerm } from '../../../hooks/useSearchTerm';
+import { useTheme } from '../../../hooks/useTheme';
 import { actions } from '../../../store/users/Users.slice';
 import styles from './Button.module.scss';
 
@@ -13,6 +14,8 @@ const Button = ({
 	const dispatch = useDispatch();
 
 	const { setSearchTerm } = useSearchTerm();
+
+	const { theme } = useTheme();
 
 	return (
 		<>
@@ -39,7 +42,9 @@ const Button = ({
 				</button>
 			) : buttonFor === 'clear' ? (
 				<button
-					className={styles.button_transparent}
+					className={
+						styles[theme ? 'button_transparent' : 'button_transparent-dark']
+					}
 					onClick={() => setSearchTerm('')}
 				>
 					{children}

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useSearchTerm } from '../../../hooks/useSearchTerm';
 import { useSettingView } from '../../../hooks/useSettingView';
+import { useTheme } from '../../../hooks/useTheme';
 import Content from '../../content/Content';
 import FontAndTheme from '../../font-and-theme/FontAndTheme';
 import Header from '../../header/Header';
@@ -20,6 +21,7 @@ const LaterRead = () => {
 	const { searchTerm } = useSearchTerm();
 
 	const { isSettingView, setIsSettingView } = useSettingView();
+	const { theme } = useTheme();
 
 	return (
 		<Layout>
@@ -30,7 +32,7 @@ const LaterRead = () => {
 					setIsSettingView={setIsSettingView}
 				/>
 				{isSettingView && <FontAndTheme />}
-				<div className={styles.main}>
+				<div className={styles[theme ? 'main' : 'main-dark']}>
 					<NavigateBar location='later' />
 					<BlockSearch
 						doubleBlock='yes'

@@ -19,3 +19,28 @@
 		color: $black;
 	}
 }
+
+.wrapper-dark {
+	display: flex;
+	gap: adapt(12px, 1920px);
+	padding: adapt(10px, 1920px) adapt(45px, 1920px) adapt(22px, 1920px)
+		adapt(45px, 1920px);
+
+	> a {
+		font-size: 0.8em;
+		line-height: 1.25;
+		color: $white;
+	}
+
+	> p {
+		font-size: 0.8em;
+		line-height: 1.25;
+		color: $blue;
+	}
+
+	> .slash-dark {
+		font-size: 0.8em;
+		line-height: 1.25;
+		color: $white;
+	}
+}

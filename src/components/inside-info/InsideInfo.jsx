@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useInfoUser } from '../../hooks/useInfoUser';
+import { useTheme } from '../../hooks/useTheme';
 import { actions as interActions } from '../../store/interlayer/Interlayer.slice';
 import { actions } from '../../store/users/Users.slice';
 import styles from './InsideInfo.module.scss';
@@ -26,10 +27,12 @@ const InsideInfo = () => {
 	const user = useSelector(state => state.users[0]);
 	const userInterlayer = useSelector(state => state.interlayer[0]);
 
+	const { theme } = useTheme();
+
 	const [secondPassword, setSecondPassword] = useState();
 
 	return (
-		<div className={styles.wrapper}>
+		<div className={styles[theme ? 'wrapper' : 'wrapper-dark']}>
 			<div className={styles.block__image_profile}>
 				<div className={styles.block__navigation}>
 					<Link to={'/home'}>Главная</Link>

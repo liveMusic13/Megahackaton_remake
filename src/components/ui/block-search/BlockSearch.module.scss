@@ -10,8 +10,63 @@
 	gap: adapt(20px, 1920px);
 }
 
+.block__search-dark {
+	display: flex;
+	background-color: $dark__blue;
+	width: 100%;
+	height: adapt(72px, 1920px);
+	align-items: center;
+	gap: adapt(20px, 1920px);
+}
+
 .block__search_yes {
 	background-color: $gray;
+	width: 100%;
+	height: adapt(121px, 1920px);
+
+	> .block__one {
+		display: flex;
+		align-items: center;
+		gap: adapt(20px, 1920px);
+		padding: adapt(8px, 1920px) adapt(43px, 1920px);
+	}
+
+	> .add_and_delete {
+		display: flex;
+		justify-content: space-between;
+		background-color: $blue;
+		height: adapt(49px, 1920px);
+		padding: adapt(15px, 1920px) adapt(16px, 1920px) adapt(16px, 1920px)
+			adapt(43px, 1920px);
+
+		> p {
+			font-size: 0.6em;
+			line-height: 1.28;
+			color: $white;
+		}
+
+		> button {
+			background-color: rgba($color: #000000, $alpha: 0);
+			color: $white;
+			display: flex;
+			align-items: center;
+			gap: adapt(12px, 1920px);
+			font-size: 0.8em;
+			line-height: 1.25;
+
+			&:hover {
+				cursor: pointer;
+			}
+
+			> img {
+				width: adapt(24px, 1920px);
+			}
+		}
+	}
+}
+
+.block__search_yes-dark {
+	background-color: $dark__blue;
 	width: 100%;
 	height: adapt(121px, 1920px);
 

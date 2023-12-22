@@ -8,6 +8,11 @@
 	flex-direction: column;
 	gap: adapt(20px, 1920px);
 	max-width: 50%;
+	overflow-y: scroll;
+
+	&::-webkit-scrollbar {
+		opacity: 0;
+	}
 
 	> .block__sorting {
 		display: flex;
@@ -32,5 +37,32 @@
 		> .allNews {
 			color: $medium_gray;
 		}
+
+		> .button__sorting-dark {
+			background-color: transparent;
+			font-size: 1em;
+			color: $white;
+
+			&:hover {
+				cursor: pointer;
+			}
+
+			> img {
+				width: adapt(20px, 1920px);
+				height: adapt(20px, 1920px);
+				margin-right: adapt(5px, 1920px);
+			}
+		}
+		> .allNews-dark {
+			color: $white;
+		}
 	}
+}
+
+.noNews {
+	color: $black;
+}
+
+.noNews-dark {
+	color: $white;
 }

@@ -15,3 +15,23 @@
 		text-indent: 1em;
 	}
 }
+
+.main-dark {
+	width: 100%;
+	background-color: $dark__blue2;
+
+	> .focusNews__description {
+		min-height: 25%;
+		padding: adapt(16px, 1920px) adapt(57px, 1920px) adapt(16px, 1920px)
+			adapt(71px, 1920px);
+		font-size: 1em;
+		line-height: 1.4;
+		color: $white;
+		background-color: $dark__blue2;
+		text-indent: 1em;
+	}
+
+	> .block__resultLater {
+		background-color: $dark__blue;
+	}
+}

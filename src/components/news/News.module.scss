@@ -1,3 +1,4 @@
+@import '../../assets/styles/variables';
 @import '../../assets/styles/functions';
 
 .news {
@@ -13,13 +14,15 @@
 		gap: adapt(15px, 1920px);
 		margin-bottom: adapt(24px, 1920px);
 
-		// > .news__id {
-		// 	font-size: 0.8em;
-		// 	margin-left: adapt(3px, 1920px);
-		// }
 		> .news__title {
 			font-weight: 600;
 			line-height: 1.4;
+		}
+
+		> .news__title-dark {
+			font-weight: 600;
+			line-height: 1.4;
+			color: $white;
 		}
 	}
 
@@ -28,6 +31,14 @@
 		line-height: 1.25;
 		max-width: adapt(823px, 1920px);
 		margin-bottom: adapt(20px, 1920px);
+	}
+
+	> .news__preview-dark {
+		font-size: 0.8em;
+		line-height: 1.25;
+		max-width: adapt(823px, 1920px);
+		margin-bottom: adapt(20px, 1920px);
+		color: $white;
 	}
 
 	> .news__blockTwo {
@@ -44,6 +55,15 @@
 			}
 			> .news__source {
 				font-size: 0.8em;
+			}
+
+			> .news__date-dark {
+				font-size: 0.8em;
+				color: $white;
+			}
+			> .news__source-dark {
+				font-size: 0.8em;
+				color: $white;
 			}
 		}
 		> .news__block_buttons {
