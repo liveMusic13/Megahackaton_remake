@@ -2,19 +2,19 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useEditingNewsTest } from '../../hooks/useEditingNewsTest';
+import { useSaveInFolder } from '../../hooks/useSaveInFolder';
 import { useTheme } from '../../hooks/useTheme';
 import { actions } from '../../store/users/Users.slice';
 import styles from './Editing.module.scss';
 
-const Editing = ({ isViewEditNews, setIsViewEditNews }) => {
+const Editing = ({ setIsViewEditNews }) => {
 	const [isEditNews, setIsEditNews] = useState(false);
 	const { editingNews, setEditingNews } = useEditingNewsTest();
+	const { setIsSaveInFolder } = useSaveInFolder();
 
 	const user = useSelector(state => state.users[0]);
 
 	const [isActiveEdit, setIsActiveEdit] = useState(false);
-	const [isActiveMarker, setIsActiveMarker] = useState(false);
-	const [isActiveFoulder, setIsActiveFoulder] = useState(false);
 
 	const dispatch = useDispatch();
 
@@ -41,10 +41,14 @@ const Editing = ({ isViewEditNews, setIsViewEditNews }) => {
 								alt='image'
 							/>
 						</button>
-						<button>
+						<button onClick={() => setIsSaveInFolder(true)}>
 							<img src='./images/icons/vector_active_white.svg' alt='image' />
 						</button>
-						<button>
+						<button
+							onClick={() => {
+								dispatch(actions.addLaterNews(editingNews));
+							}}
+						>
 							<img
 								src={
 									user.news.viewLaterNews.some(
@@ -55,9 +59,6 @@ const Editing = ({ isViewEditNews, setIsViewEditNews }) => {
 								}
 								alt='image'
 							/>
-						</button>
-						<button>
-							<img src='./images/icons/foulder_white.svg' alt='image' />
 						</button>
 						<button
 							onClick={() => {

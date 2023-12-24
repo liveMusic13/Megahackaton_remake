@@ -8,10 +8,9 @@ import styles from './SaveInFolder.module.scss';
 const SaveInFolder = ({ inFolder }) => {
 	const { theme } = useTheme();
 	const user = useSelector(state => state.users[0]);
-	const idFolderFocus = useSelector(state => state.folderFocus[0]);
 	const focusObject = useSelector(state => state.focusObject[0]);
-	const { isSaveInFolder, setIsSaveInFolder } = useSaveInFolder();
-	const { editingNews, setEditingNews } = useEditingNewsTest();
+	const { setIsSaveInFolder } = useSaveInFolder();
+	const { editingNews } = useEditingNewsTest();
 
 	const dispatch = useDispatch();
 
@@ -39,8 +38,6 @@ const SaveInFolder = ({ inFolder }) => {
 							key={folder.id}
 							className={styles[theme ? 'block__folder' : 'block__folder-dark']}
 							onClick={() => {
-								// console.log(editingNews);
-								console.log(searchNewsInFocus());
 								dispatch(
 									actions.addFavoriteFolderNews({
 										id: folder.id,

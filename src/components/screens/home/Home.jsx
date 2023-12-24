@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useEditingNewsTest } from '../../../hooks/useEditingNewsTest';
 import { useFilter } from '../../../hooks/useFilter';
 import { useSaveInFolder } from '../../../hooks/useSaveInFolder';
 import { useSearchTerm } from '../../../hooks/useSearchTerm';
@@ -22,11 +21,10 @@ import styles from './Home.module.scss';
 const Home = () => {
 	const { theme } = useTheme();
 
-	const { editingNews, setEditingNews } = useEditingNewsTest();
 	const [isViewEditNews, setIsViewEditNews] = useState(false);
 
 	const { isSettingView, setIsSettingView } = useSettingView();
-	const { isSaveInFolder, setIsSaveInFolder } = useSaveInFolder();
+	const { isSaveInFolder } = useSaveInFolder();
 	const { isShareEmail } = useShareEmail();
 
 	const { searchTerm } = useSearchTerm();
@@ -47,7 +45,7 @@ const Home = () => {
 				/>
 				{isShareEmail && <ShareEmail />}
 				{isSettingView && <FontAndTheme />}
-				{isSaveInFolder && <SaveInFolder />}
+				{isSaveInFolder && <SaveInFolder inFolder='no' />}
 				<div className={styles.block__news}>
 					<div className={styles.block__sorting}>
 						<button
