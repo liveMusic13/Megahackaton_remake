@@ -22,7 +22,14 @@ const SaveInFolder = ({ inFolder }) => {
 	return (
 		<div className={styles[theme ? 'wrapper' : 'wrapper-dark']}>
 			<button onClick={() => setIsSaveInFolder(false)} className={styles.exit}>
-				<img src='../images/icons/exit_edit_black.svg' alt='img' />
+				<img
+					src={
+						theme
+							? '../images/icons/exit_edit_black.svg'
+							: '../images/icons/exit_edit.svg'
+					}
+					alt='img'
+				/>
 			</button>
 			<h2>Сохранить в моей папке</h2>
 			<div className={styles[theme ? 'block__folders' : 'block__folders-dark']}>
@@ -45,7 +52,14 @@ const SaveInFolder = ({ inFolder }) => {
 								setIsSaveInFolder(false);
 							}}
 						>
-							<img src='../images/icons/favorite_foulder.svg' alt='img' />
+							<img
+								src={
+									theme
+										? '../images/icons/favorite_foulder.svg'
+										: '../images/icons/favorite_foulder_white.svg'
+								}
+								alt='img'
+							/>
 							<p>{folder.name}</p>
 						</button>
 					);

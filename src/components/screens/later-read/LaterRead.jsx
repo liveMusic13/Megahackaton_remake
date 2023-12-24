@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useSaveInFolder } from '../../../hooks/useSaveInFolder';
 import { useSearchTerm } from '../../../hooks/useSearchTerm';
 import { useSettingView } from '../../../hooks/useSettingView';
 import { useTheme } from '../../../hooks/useTheme';
@@ -12,6 +13,7 @@ import NewsInOtherPage from '../../news-in-other-page/NewsInOtherPage';
 import TitleList from '../../title-list/TitleList';
 import BlockSearch from '../../ui/block-search/BlockSearch';
 import NavigateBar from '../../ui/navigate-bar/NavigateBar';
+import SaveInFolder from '../../ui/savi-in-folder/SaveInFolder';
 import styles from './LaterRead.module.scss';
 
 const LaterRead = () => {
@@ -22,6 +24,7 @@ const LaterRead = () => {
 
 	const { isSettingView, setIsSettingView } = useSettingView();
 	const { theme } = useTheme();
+	const { isSaveInFolder, setIsSaveInFolder } = useSaveInFolder();
 
 	return (
 		<Layout>
@@ -31,6 +34,7 @@ const LaterRead = () => {
 					isSettingView={isSettingView}
 					setIsSettingView={setIsSettingView}
 				/>
+				{isSaveInFolder && <SaveInFolder inFolder='yes' />}
 				{isSettingView && <FontAndTheme />}
 				<div className={styles[theme ? 'main' : 'main-dark']}>
 					<NavigateBar location='later' />

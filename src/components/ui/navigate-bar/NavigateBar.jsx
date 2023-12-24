@@ -16,7 +16,7 @@ const NavigateBar = ({ location }) => {
 			)}
 			<p className={styles[theme ? 'slash' : 'slash-dark']}>/</p>
 			{location !== 'favorite' ? (
-				<Link to={'/home/favorite'}>Мои папки</Link>
+				<Link to={'/home/favoriteFolders'}>Мои папки</Link>
 			) : (
 				<p>Мои папки</p>
 			)}
