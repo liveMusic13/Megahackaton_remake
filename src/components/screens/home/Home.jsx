@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useEditingNewsTest } from '../../../hooks/useEditingNewsTest';
 import { useFilter } from '../../../hooks/useFilter';
+import { useSaveInFolder } from '../../../hooks/useSaveInFolder';
 import { useSearchTerm } from '../../../hooks/useSearchTerm';
 import { useSettingView } from '../../../hooks/useSettingView';
 import { useTheme } from '../../../hooks/useTheme';
@@ -12,6 +13,7 @@ import Header from '../../header/Header';
 import Layout from '../../layout/Layout';
 import LeftPanel from '../../left-panel/LeftPanel';
 import News from '../../news/News';
+import SaveInFolder from '../../ui/savi-in-folder/SaveInFolder';
 import WindowFilter from '../../window-filter/WindowFilter';
 import styles from './Home.module.scss';
 
@@ -22,6 +24,7 @@ const Home = () => {
 	const [isViewEditNews, setIsViewEditNews] = useState(false);
 
 	const { isSettingView, setIsSettingView } = useSettingView();
+	const { isSaveInFolder, setIsSaveInFolder } = useSaveInFolder();
 
 	const { searchTerm } = useSearchTerm();
 	const { isViewFilter } = useFilter();
@@ -40,6 +43,7 @@ const Home = () => {
 					setIsSettingView={setIsSettingView}
 				/>
 				{isSettingView && <FontAndTheme />}
+				{isSaveInFolder && <SaveInFolder />}
 				<div className={styles.block__news}>
 					<div className={styles.block__sorting}>
 						<button

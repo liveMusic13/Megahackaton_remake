@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import useDescriptionLength from '../../hooks/useDescriptionLength';
+import { useSaveInFolder } from '../../hooks/useSaveInFolder';
 import { useTheme } from '../../hooks/useTheme';
 import { actions as focusActions } from '../../store/focus-object/FocusObject.slice';
 import { actions } from '../../store/users/Users.slice';
@@ -15,6 +16,7 @@ const NewsInOtherPage = ({
 }) => {
 	const { truncateDescription } = useDescriptionLength();
 	const { theme } = useTheme();
+	const { isSaveInFolder, setIsSaveInFolder } = useSaveInFolder();
 	const user = useSelector(state => state.users[0]);
 	const idFolderFocus = useSelector(state => state.folderFocus[0]);
 
@@ -124,11 +126,29 @@ const NewsInOtherPage = ({
 					</>
 				) : page === 'folder' ? (
 					<>
-						<button>
+						<button onClick={() => setIsSaveInFolder(true)}>
 							{theme ? (
-								<img src='../images/icons/foulder.svg' alt='img' />
+								<img
+									src={
+										user.news.favoritesNews.some(folder =>
+											folder.arrayNews.some(favorite => favorite.id === news.id)
+										)
+											? '../images/icons/foulder_active_blue.svg'
+											: '../images/icons/foulder.svg'
+									}
+									alt='image'
+								/>
 							) : (
-								<img src='../images/icons/foulder_active_white.svg' alt='img' />
+								<img
+									src={
+										user.news.favoritesNews.some(folder =>
+											folder.arrayNews.some(favorite => favorite.id === news.id)
+										)
+											? '../images/icons/foulder_full_white.svg'
+											: '../images/icons/foulder_active_white.svg'
+									}
+									alt='image'
+								/>
 							)}
 						</button>
 						<button>
@@ -164,11 +184,29 @@ const NewsInOtherPage = ({
 					</>
 				) : (
 					<>
-						<button>
+						<button onClick={() => setIsSaveInFolder(true)}>
 							{theme ? (
-								<img src='../images/icons/foulder.svg' alt='img' />
+								<img
+									src={
+										user.news.favoritesNews.some(folder =>
+											folder.arrayNews.some(favorite => favorite.id === news.id)
+										)
+											? '../images/icons/foulder_active_blue.svg'
+											: '../images/icons/foulder.svg'
+									}
+									alt='image'
+								/>
 							) : (
-								<img src='../images/icons/foulder_active_white.svg' alt='img' />
+								<img
+									src={
+										user.news.favoritesNews.some(folder =>
+											folder.arrayNews.some(favorite => favorite.id === news.id)
+										)
+											? '../images/icons/foulder_full_white.svg'
+											: '../images/icons/foulder_active_white.svg'
+									}
+									alt='image'
+								/>
 							)}
 						</button>
 						<button>

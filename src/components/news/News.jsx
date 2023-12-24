@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import useDescriptionLength from '../../hooks/useDescriptionLength';
 import { useEditingNewsTest } from '../../hooks/useEditingNewsTest';
+import { useSaveInFolder } from '../../hooks/useSaveInFolder';
 import { useTheme } from '../../hooks/useTheme';
 import { actions } from '../../store/users/Users.slice';
 import styles from './News.module.scss';
@@ -12,6 +13,7 @@ const News = ({ news, setIsViewEditNews, isViewEditNews }) => {
 	const { truncateDescription } = useDescriptionLength();
 
 	const { editingNews, setEditingNews } = useEditingNewsTest();
+	const { setIsSaveInFolder } = useSaveInFolder();
 
 	const { theme } = useTheme();
 
@@ -97,15 +99,30 @@ const News = ({ news, setIsViewEditNews, isViewEditNews }) => {
 							/>
 						)}
 					</button>
-					<button>
-						<img
-							src={
-								theme
-									? './images/icons/foulder.svg'
-									: './images/icons/foulder_active_white.svg'
-							}
-							alt='image'
-						/>
+					<button onClick={() => setIsSaveInFolder(true)}>
+						{theme ? (
+							<img
+								src={
+									user.news.favoritesNews.some(folder =>
+										folder.arrayNews.some(favorite => favorite.id === news.id)
+									)
+										? './images/icons/foulder_active_blue.svg'
+										: './images/icons/foulder.svg'
+								}
+								alt='image'
+							/>
+						) : (
+							<img
+								src={
+									user.news.favoritesNews.some(folder =>
+										folder.arrayNews.some(favorite => favorite.id === news.id)
+									)
+										? './images/icons/foulder_full_white.svg'
+										: './images/icons/foulder_active_white.svg'
+								}
+								alt='image'
+							/>
+						)}
 					</button>
 
 					<button

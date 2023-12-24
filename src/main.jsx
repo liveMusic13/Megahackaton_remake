@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import './assets/styles/global.scss';
 import EditingNewsTestProvider from './providers/EditingNewsTestProvider';
 import FilterProvider from './providers/FilterProvider';
+import SaveInFolderProvider from './providers/SaveInFolderProvider';
 import SearchTermProvider from './providers/SearchTermProvider';
 import SettingViewProvider from './providers/SettingViewProvider';
 import ThemeProvider from './providers/ThemeProvider';
@@ -15,13 +16,15 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 	<ThemeProvider>
 		<FilterProvider>
 			<Provider store={store}>
-				<SearchTermProvider>
-					<SettingViewProvider>
-						<EditingNewsTestProvider>
-							<Router />
-						</EditingNewsTestProvider>
-					</SettingViewProvider>
-				</SearchTermProvider>
+				<SaveInFolderProvider>
+					<SearchTermProvider>
+						<SettingViewProvider>
+							<EditingNewsTestProvider>
+								<Router />
+							</EditingNewsTestProvider>
+						</SettingViewProvider>
+					</SearchTermProvider>
+				</SaveInFolderProvider>
 			</Provider>
 		</FilterProvider>
 	</ThemeProvider>

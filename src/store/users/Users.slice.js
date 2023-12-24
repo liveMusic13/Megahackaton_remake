@@ -150,7 +150,26 @@ const initialState = [
 				{
 					id: 1,
 					name: '22.12.2023',
-					arrayNews: [],
+					arrayNews: [
+						{
+							id: 222,
+							title: 'Танцующиеываыфафыаыфафыашеходных переходах',
+							full_text:
+								'В4444444444444444х танцевальных батлах, ставших новым трендом городского развлечения.В городе появились танцующие роботы на пешеходных переходах. Очевидцы рассказывают о неожиданных дуэлях роботов и веселых танцевальных батлах, ставших новым трендом городского развлечения.',
+							published_at: '01.10.2023',
+							search_words: '',
+							ml_key_words: '',
+							full_text_link: '',
+							rating: 1,
+							counter: 1,
+							fun_metric: '',
+							unique_metric: '',
+							simple_metric: '',
+							parsed_at: '',
+							parsed_from: 'Фонтанка',
+							tag: '#роботы, пешеходный переход',
+						},
+					],
 				},
 			],
 		},
@@ -168,6 +187,30 @@ export const Users = createSlice({
 
 			if (index === -1) {
 				state[0].news.viewHistoryNews.push(payload);
+			}
+		},
+
+		addFavoriteFolderNews: (state, { payload }) => {
+			const folderIndex = state[0].news.favoritesNews.findIndex(
+				folder => folder.id === payload.id
+			);
+
+			if (folderIndex !== -1) {
+				// Получаем объект папки по индексу
+				const folder = state[0].news.favoritesNews[folderIndex];
+
+				// Проверяем наличие свойства arrayNews в папке
+				if (folder.arrayNews) {
+					// Ищем индекс новости в arrayNews
+					const newsIndex = folder.arrayNews.findIndex(
+						news => news.id === payload.news.id
+					);
+
+					if (newsIndex === -1) {
+						// Добавляем новость в arrayNews
+						folder.arrayNews.push(payload.news);
+					}
+				}
 			}
 		},
 		addEditingNews: (state, { payload }) => {
@@ -221,6 +264,7 @@ export const Users = createSlice({
 				state[0].news.favoritesNews.splice(index, 1);
 			}
 		},
+
 		deleteNewNews: (state, { payload }) => {
 			const index = state[0].news.newNews.findIndex(
 				news => news.id === payload.id
@@ -249,12 +293,26 @@ export const Users = createSlice({
 			}
 		},
 		deleteFavoriteFoldersNews: (state, { payload }) => {
-			const index = state[0].news.favoritesNews[payload.id].arrayNews.findIndex(
-				news => news.id === payload.news.id
+			const folderIndex = state[0].news.favoritesNews.findIndex(
+				folder => folder.id === payload.id
 			);
 
-			if (index !== -1) {
-				state[0].news.favoritesNews[payload.id].arrayNews.splice(index, 1);
+			if (folderIndex !== -1) {
+				// Получаем объект папки по индексу
+				const folder = state[0].news.favoritesNews[folderIndex];
+
+				// Проверяем наличие свойства arrayNews в папке
+				if (folder.arrayNews) {
+					// Ищем индекс новости в arrayNews
+					const newsIndex = folder.arrayNews.findIndex(
+						news => news.id === payload.news.id
+					);
+
+					if (newsIndex !== -1) {
+						// Удаляем новость из arrayNews
+						folder.arrayNews.splice(newsIndex, 1);
+					}
+				}
 			}
 		},
 		addURLImage: (state, { payload }) => {

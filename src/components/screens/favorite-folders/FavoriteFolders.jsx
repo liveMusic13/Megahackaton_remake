@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useSaveInFolder } from '../../../hooks/useSaveInFolder';
 import { useSearchTerm } from '../../../hooks/useSearchTerm';
 import { useSettingView } from '../../../hooks/useSettingView';
 import { useTheme } from '../../../hooks/useTheme';
@@ -14,12 +15,14 @@ import NewsInOtherPage from '../../news-in-other-page/NewsInOtherPage';
 import TitleList from '../../title-list/TitleList';
 import BlockSearch from '../../ui/block-search/BlockSearch';
 import NavigateBar from '../../ui/navigate-bar/NavigateBar';
+import SaveInFolder from '../../ui/savi-in-folder/SaveInFolder';
 import styles from './FavoriteFolders.module.scss';
 
 const FavoriteFolders = () => {
 	const { theme } = useTheme();
 	const { isSettingView, setIsSettingView } = useSettingView();
 	const { searchTerm } = useSearchTerm();
+	const { isSaveInFolder, setIsSaveInFolder } = useSaveInFolder();
 
 	const [focusNews, setFocusNews] = useState();
 
@@ -34,7 +37,7 @@ const FavoriteFolders = () => {
 	const [valueCreateFolder, setValueCreateFolder] = useState('');
 
 	const createId = () => {
-		return user.news.favoritesNews.length;
+		return user.news.favoritesNews.length + Math.random();
 	};
 
 	return (
@@ -51,6 +54,7 @@ const FavoriteFolders = () => {
 					isSettingView={isSettingView}
 					setIsSettingView={setIsSettingView}
 				/>
+				{isSaveInFolder && <SaveInFolder inFolder='yes' />}
 				{isSettingView && <FontAndTheme />}
 				<div className={styles.main}>
 					<NavigateBar location='favorite' />
@@ -72,24 +76,23 @@ const FavoriteFolders = () => {
 							>
 								{searchTerm === '' ? (
 									<>
-										{user.news.favoritesNews[idFolderFocus.id].arrayNews.map(
-											news => {
-												return (
-													<NewsInOtherPage
-														key={news.id}
-														news={news}
-														setFocusNews={setFocusNews}
-														focusNews={focusNews}
-														page='folder'
-													/>
-												);
-											}
-										)}
+										{user.news?.favoritesNews
+											.find(folder => folder.id === idFolderFocus.id)
+											?.arrayNews?.map(news => (
+												<NewsInOtherPage
+													key={news.id}
+													news={news}
+													setFocusNews={setFocusNews}
+													focusNews={focusNews}
+													page='folder'
+												/>
+											))}
 									</>
 								) : (
 									<>
-										{user.news.favoritesNews[idFolderFocus.id].arrayNews.map(
-											news => {
+										{user.news?.favoritesNews
+											.find(folder => folder.id === idFolderFocus.id)
+											?.arrayNews?.map(news => {
 												if (
 													news.title
 														.toLowerCase()
@@ -107,35 +110,38 @@ const FavoriteFolders = () => {
 													);
 												}
 												return null;
-											}
-										)}
-										{user.news.favoritesNews[idFolderFocus.id].arrayNews.every(
-											news =>
-												!news.title
-													.toLowerCase()
-													.includes(searchTerm.toLowerCase())
-										) && <p>нет новостей</p>}
+											})}
+										{user.news?.favoritesNews
+											.find(folder => folder.id === idFolderFocus.id)
+											?.arrayNews?.every(
+												news =>
+													!news.title
+														.toLowerCase()
+														.includes(searchTerm.toLowerCase())
+											) && <p>нет новостей</p>}
 									</>
 								)}
 							</div>
-							{user.news.favoritesNews[idFolderFocus.id].arrayNews.map(news => {
-								if (news.id === focusNews) {
-									return (
-										<p
-											key={news.id}
-											className={
-												styles[
-													theme
-														? 'focusNews__description'
-														: 'focusNews__description-dark'
-												]
-											}
-										>
-											{news.full_text}
-										</p>
-									);
-								}
-							})}
+							{user.news?.favoritesNews
+								.find(folder => folder.id === idFolderFocus.id)
+								?.arrayNews?.map(news => {
+									if (news.id === focusNews) {
+										return (
+											<p
+												key={news.id}
+												className={
+													styles[
+														theme
+															? 'focusNews__description'
+															: 'focusNews__description-dark'
+													]
+												}
+											>
+												{news.full_text}
+											</p>
+										);
+									}
+								})}
 						</>
 					) : (
 						<div className={styles.block__buttons}>
