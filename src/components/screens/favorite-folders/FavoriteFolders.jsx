@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useSaveInFolder } from '../../../hooks/useSaveInFolder';
 import { useSearchTerm } from '../../../hooks/useSearchTerm';
 import { useSettingView } from '../../../hooks/useSettingView';
+import { useShareEmail } from '../../../hooks/useShareEmail';
 import { useTheme } from '../../../hooks/useTheme';
 import { actions } from '../../../store/folder-focus/FolderFocus.slice';
 import { actions as userActions } from '../../../store/users/Users.slice';
@@ -16,13 +17,15 @@ import TitleList from '../../title-list/TitleList';
 import BlockSearch from '../../ui/block-search/BlockSearch';
 import NavigateBar from '../../ui/navigate-bar/NavigateBar';
 import SaveInFolder from '../../ui/savi-in-folder/SaveInFolder';
+import ShareEmail from '../../ui/share-email/ShareEmail';
 import styles from './FavoriteFolders.module.scss';
 
 const FavoriteFolders = () => {
 	const { theme } = useTheme();
 	const { isSettingView, setIsSettingView } = useSettingView();
 	const { searchTerm } = useSearchTerm();
-	const { isSaveInFolder, setIsSaveInFolder } = useSaveInFolder();
+	const { isSaveInFolder } = useSaveInFolder();
+	const { isShareEmail } = useShareEmail();
 
 	const [focusNews, setFocusNews] = useState();
 
@@ -31,7 +34,6 @@ const FavoriteFolders = () => {
 	const dispatch = useDispatch();
 
 	const [isNewsInFolder, setIsNewsInFolder] = useState(false);
-	// const [idFolderFocus, setIdFolderFocus] = useState();TODO: СДЕЛАТЬ УДАЛЕНИЕ ПАПКИ
 
 	const [isCreateFolder, setIsCreateFolder] = useState(false);
 	const [valueCreateFolder, setValueCreateFolder] = useState('');
@@ -54,6 +56,7 @@ const FavoriteFolders = () => {
 					isSettingView={isSettingView}
 					setIsSettingView={setIsSettingView}
 				/>
+				{isShareEmail && <ShareEmail />}
 				{isSaveInFolder && <SaveInFolder inFolder='yes' />}
 				{isSettingView && <FontAndTheme />}
 				<div className={styles.main}>
@@ -153,7 +156,6 @@ const FavoriteFolders = () => {
 											styles[theme ? 'button__folder' : 'button__folder-dark']
 										}
 										onClick={() => {
-											// setIdFolderFocus(folder.id);
 											dispatch(actions.addFolderFocusNews(folder.id));
 											setIsNewsInFolder(true);
 										}}

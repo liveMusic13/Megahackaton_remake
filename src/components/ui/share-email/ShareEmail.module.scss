@@ -1,0 +1,205 @@
+@import '../../../assets/styles/variables';
+@import '../../../assets/styles/functions';
+
+.wrapper {
+	width: adapt(837px, 1920px);
+	height: adapt(409px, 1920px);
+	position: absolute;
+	top: 20%;
+	left: 25%;
+	background-image: url('../images/share.png');
+	background-size: cover;
+	background-repeat: no-repeat;
+	padding: adapt(63px, 1920px) adapt(112px, 1920px);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: adapt(65px, 1920px);
+
+	> .exit {
+		position: absolute;
+		top: 7%;
+		right: 7%;
+		background-color: transparent;
+
+		&:hover {
+			cursor: pointer;
+		}
+	}
+
+	> h2 {
+		font-size: 1em;
+		line-height: 1.2;
+		text-transform: uppercase;
+		color: $black;
+	}
+
+	> .block__input {
+		display: flex;
+		flex-direction: column;
+		gap: 24px;
+
+		> label {
+			font-size: 1em;
+			line-height: 1;
+			color: $black;
+		}
+
+		> input {
+			padding: adapt(20px, 1920px);
+			border-radius: adapt(20px, 1920px);
+			font-size: 0.8em;
+			line-height: 1.25;
+			color: $black;
+			width: adapt(613px, 1920px);
+			height: adapt(40px, 1920px);
+			outline: none;
+
+			&::placeholder {
+				color: $medium_gray;
+				font-size: 0.8em;
+				line-height: 1.25;
+			}
+		}
+	}
+
+	> .block__buttons {
+		display: flex;
+		gap: adapt(89px, 1920px);
+
+		> .button {
+			border: 1px solid $blue;
+			color: $blue;
+			width: adapt(231px, 1920px);
+			height: adapt(44px, 1920px);
+			border-radius: adapt(20px, 1920px);
+			font-size: 1em;
+			line-height: 1.2;
+			text-transform: uppercase;
+
+			&:hover {
+				cursor: pointer;
+			}
+		}
+
+		> .button__link {
+			color: $white;
+			background-color: $blue;
+			width: adapt(231px, 1920px);
+			height: adapt(44px, 1920px);
+			padding: adapt(10px, 1920px) adapt(55px, 1920px);
+			border-radius: adapt(20px, 1920px);
+			font-size: 1em;
+			line-height: 1.2;
+			text-transform: uppercase;
+			text-decoration: none;
+
+			&:hover {
+				cursor: pointer;
+			}
+		}
+	}
+}
+
+.wrapper-dark {
+	width: adapt(837px, 1920px);
+	height: adapt(409px, 1920px);
+	position: absolute;
+	top: 20%;
+	left: 25%;
+	background-image: url('../images/share_dark.png');
+	background-size: cover;
+	background-repeat: no-repeat;
+	padding: adapt(63px, 1920px) adapt(112px, 1920px);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: adapt(65px, 1920px);
+
+	> .exit {
+		position: absolute;
+		top: 7%;
+		right: 7%;
+		background-color: transparent;
+
+		&:hover {
+			cursor: pointer;
+		}
+	}
+
+	> h2 {
+		font-size: 1em;
+		line-height: 1.2;
+		text-transform: uppercase;
+		color: $white;
+	}
+
+	> .block__input {
+		display: flex;
+		flex-direction: column;
+		gap: 24px;
+
+		> label {
+			font-size: 1em;
+			line-height: 1;
+			color: $white;
+		}
+
+		> input {
+			padding: adapt(20px, 1920px);
+			border-radius: adapt(20px, 1920px);
+			font-size: 0.8em;
+			line-height: 1.25;
+			color: $white;
+			width: adapt(613px, 1920px);
+			height: adapt(40px, 1920px);
+			outline: none;
+			border: 1px solid $white;
+			background-color: transparent;
+
+			&::placeholder {
+				color: $medium_gray;
+				font-size: 0.8em;
+				line-height: 1.25;
+			}
+		}
+	}
+
+	> .block__buttons {
+		display: flex;
+		gap: adapt(89px, 1920px);
+
+		> .button {
+			border: 1px solid $white;
+			color: $white;
+			width: adapt(231px, 1920px);
+			height: adapt(44px, 1920px);
+			border-radius: adapt(20px, 1920px);
+			font-size: 1em;
+			line-height: 1.2;
+			text-transform: uppercase;
+			background-color: transparent;
+
+			&:hover {
+				cursor: pointer;
+			}
+		}
+
+		> .button__link {
+			color: $white;
+			background-color: $blue;
+			width: adapt(231px, 1920px);
+			height: adapt(44px, 1920px);
+			padding: adapt(10px, 1920px) adapt(55px, 1920px);
+			border-radius: adapt(20px, 1920px);
+			font-size: 1em;
+			line-height: 1.2;
+			text-transform: uppercase;
+			text-decoration: none;
+
+			&:hover {
+				cursor: pointer;
+			}
+		}
+	}
+}

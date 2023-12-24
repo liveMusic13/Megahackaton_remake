@@ -7,6 +7,7 @@ import FilterProvider from './providers/FilterProvider';
 import SaveInFolderProvider from './providers/SaveInFolderProvider';
 import SearchTermProvider from './providers/SearchTermProvider';
 import SettingViewProvider from './providers/SettingViewProvider';
+import ShareEmailProvider from './providers/ShareEmailProvider';
 import ThemeProvider from './providers/ThemeProvider';
 import Router from './routes/Router';
 import { store } from './store/store';
@@ -17,13 +18,15 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 		<FilterProvider>
 			<Provider store={store}>
 				<SaveInFolderProvider>
-					<SearchTermProvider>
-						<SettingViewProvider>
-							<EditingNewsTestProvider>
-								<Router />
-							</EditingNewsTestProvider>
-						</SettingViewProvider>
-					</SearchTermProvider>
+					<ShareEmailProvider>
+						<SearchTermProvider>
+							<SettingViewProvider>
+								<EditingNewsTestProvider>
+									<Router />
+								</EditingNewsTestProvider>
+							</SettingViewProvider>
+						</SearchTermProvider>
+					</ShareEmailProvider>
 				</SaveInFolderProvider>
 			</Provider>
 		</FilterProvider>

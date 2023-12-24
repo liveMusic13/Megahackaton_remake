@@ -5,6 +5,7 @@ import { useFilter } from '../../../hooks/useFilter';
 import { useSaveInFolder } from '../../../hooks/useSaveInFolder';
 import { useSearchTerm } from '../../../hooks/useSearchTerm';
 import { useSettingView } from '../../../hooks/useSettingView';
+import { useShareEmail } from '../../../hooks/useShareEmail';
 import { useTheme } from '../../../hooks/useTheme';
 import Content from '../../content/Content';
 import Editing from '../../editing/Editing';
@@ -14,6 +15,7 @@ import Layout from '../../layout/Layout';
 import LeftPanel from '../../left-panel/LeftPanel';
 import News from '../../news/News';
 import SaveInFolder from '../../ui/savi-in-folder/SaveInFolder';
+import ShareEmail from '../../ui/share-email/ShareEmail';
 import WindowFilter from '../../window-filter/WindowFilter';
 import styles from './Home.module.scss';
 
@@ -25,6 +27,7 @@ const Home = () => {
 
 	const { isSettingView, setIsSettingView } = useSettingView();
 	const { isSaveInFolder, setIsSaveInFolder } = useSaveInFolder();
+	const { isShareEmail } = useShareEmail();
 
 	const { searchTerm } = useSearchTerm();
 	const { isViewFilter } = useFilter();
@@ -42,6 +45,7 @@ const Home = () => {
 					isSettingView={isSettingView}
 					setIsSettingView={setIsSettingView}
 				/>
+				{isShareEmail && <ShareEmail />}
 				{isSettingView && <FontAndTheme />}
 				{isSaveInFolder && <SaveInFolder />}
 				<div className={styles.block__news}>

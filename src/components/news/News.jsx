@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import useDescriptionLength from '../../hooks/useDescriptionLength';
 import { useEditingNewsTest } from '../../hooks/useEditingNewsTest';
 import { useSaveInFolder } from '../../hooks/useSaveInFolder';
+import { useShareEmail } from '../../hooks/useShareEmail';
 import { useTheme } from '../../hooks/useTheme';
 import { actions } from '../../store/users/Users.slice';
 import styles from './News.module.scss';
@@ -14,6 +15,7 @@ const News = ({ news, setIsViewEditNews, isViewEditNews }) => {
 
 	const { editingNews, setEditingNews } = useEditingNewsTest();
 	const { setIsSaveInFolder } = useSaveInFolder();
+	const { setIsShareEmail } = useShareEmail();
 
 	const { theme } = useTheme();
 
@@ -64,7 +66,7 @@ const News = ({ news, setIsViewEditNews, isViewEditNews }) => {
 					</p>
 				</div>
 				<div className={styles.news__block_buttons}>
-					<button>
+					<button onClick={() => setIsShareEmail(true)}>
 						<img
 							src={
 								theme

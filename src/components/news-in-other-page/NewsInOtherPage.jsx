@@ -2,21 +2,17 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import useDescriptionLength from '../../hooks/useDescriptionLength';
 import { useSaveInFolder } from '../../hooks/useSaveInFolder';
+import { useShareEmail } from '../../hooks/useShareEmail';
 import { useTheme } from '../../hooks/useTheme';
 import { actions as focusActions } from '../../store/focus-object/FocusObject.slice';
 import { actions } from '../../store/users/Users.slice';
 import styles from './NewsInOtherPage.module.scss';
 
-const NewsInOtherPage = ({
-	news,
-	focusNews,
-	setFocusNews,
-	page,
-	// idFolderFocus,
-}) => {
+const NewsInOtherPage = ({ news, focusNews, setFocusNews, page }) => {
 	const { truncateDescription } = useDescriptionLength();
 	const { theme } = useTheme();
-	const { isSaveInFolder, setIsSaveInFolder } = useSaveInFolder();
+	const { setIsShareEmail } = useShareEmail();
+	const { setIsSaveInFolder } = useSaveInFolder();
 	const user = useSelector(state => state.users[0]);
 	const idFolderFocus = useSelector(state => state.folderFocus[0]);
 
@@ -151,7 +147,7 @@ const NewsInOtherPage = ({
 								/>
 							)}
 						</button>
-						<button>
+						<button onClick={() => setIsShareEmail(true)}>
 							<img
 								src={
 									theme
@@ -209,7 +205,7 @@ const NewsInOtherPage = ({
 								/>
 							)}
 						</button>
-						<button>
+						<button onClick={() => setIsShareEmail(true)}>
 							<img
 								src={
 									theme

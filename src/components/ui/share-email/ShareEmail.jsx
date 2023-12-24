@@ -1,14 +1,16 @@
 import { useState } from 'react';
+import { useShareEmail } from '../../../hooks/useShareEmail';
 import { useTheme } from '../../../hooks/useTheme';
 import styles from './ShareEmail.module.scss';
 
 const ShareEmail = () => {
 	const { theme } = useTheme();
 	const [inputValue, setInputValue] = useState('');
+	const { isShareEmail, setIsShareEmail } = useShareEmail();
 
 	return (
-		<div className={styles.wrapper}>
-			<button className={styles.exit}>
+		<div className={styles[theme ? 'wrapper' : 'wrapper-dark']}>
+			<button className={styles.exit} onClick={() => setIsShareEmail(false)}>
 				<img
 					src={
 						theme
@@ -23,17 +25,20 @@ const ShareEmail = () => {
 				<label htmlFor='share'>Введите почту получателя</label>
 				<input
 					type='text'
+					placeholder='E-mail'
 					id='share'
 					value={inputValue}
 					onChange={event => setInputValue(event.target.value)}
 				/>
 			</div>
 			<div className={styles.block__buttons}>
-				<button>оТМЕНИТЬ</button>
-				<a href={'mailto:' + inputValue}>dfsf</a>
+				<button className={styles.button}>оТМЕНИТЬ</button>
+				<a href={'mailto:' + inputValue} className={styles.button__link}>
+					отправить
+				</a>
 			</div>
 		</div>
-	); //TODO: СДЕЛАТЬ ОТПРАВКУ НА ПОЧТУ
+	);
 };
 
 export default ShareEmail;
